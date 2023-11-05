@@ -1,3 +1,4 @@
+// TODO: Delete this file
 const express = require('express');
 const app = express();
 const authRoutes = require('./src/routes/authRoutes');
