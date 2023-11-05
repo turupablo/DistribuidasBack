@@ -1,3 +1,4 @@
+// TODO: Delete this file
 const mysql = require('mysql');
 
 const db = mysql.createConnection({

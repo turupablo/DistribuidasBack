@@ -1,3 +1,4 @@
+// TODO: Delete this file
 const jwt = require('jsonwebtoken');
 
 const secretKey = 'lima757';
