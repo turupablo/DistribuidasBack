@@ -1,12 +1,12 @@
 require('dotenv').config();
-const OwnerService = require('../models/owner.model');
+const OwnerService = require('../services/owner.service');
 const AuthService = require('../services/auth.service');
 const jwt = require('jsonwebtoken');
 
 class OwnerController{
     async getOwners(req, res){
         try {
-            const owners = await OwnerService.findAll();
+            const owners = await OwnerService.getOwners();
             return res.status(200).json(owners);
         } catch (err) {
             console.error(err);

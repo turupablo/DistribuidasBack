@@ -1,16 +1,17 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
-const sqlDBconnection = async() => {
-    const sequelize = new Sequelize(
-        process.env.SQL_DB,
-        process.env.SQL_NAME, 
-        process.env.SQL_PASS, {
-        host: process.env.SQL_HOST,
-        port: process.env.SQL_PORT,
+const sequelize = new Sequelize(
+    process.env.SQL_DB,
+    process.env.SQL_NAME, 
+    process.env.SQL_PASS, {
+    host: process.env.SQL_HOST,
+    port: process.env.SQL_PORT,
 
-        dialect: 'mysql'
-    });
+    dialect: 'mysql'
+});
+
+const sqlDBconnection = async() => {
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
@@ -22,4 +23,4 @@ const sqlDBconnection = async() => {
     return sequelize;
 };
 
-module.exports = { sqlDBconnection };
+module.exports = { sqlDBconnection, sequelize };

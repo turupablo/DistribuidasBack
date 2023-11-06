@@ -21,22 +21,18 @@ class OwnerService{
         }
     }
 
-    async createOwner(owner){
+    async create(_owner){
         try {
-            let isOwnerRegistered = await Owner.findOne({
-                where: {
-                    email: owner.email
-                }
+            let newOwner = new Owner(_owner);
+            newOwner.password = await bcrypt.hashSync(_owner.password, parseInt(process.env.SALT_ROUNDS) | 10);
+            const ownerAdded = await Owner.create({
+                nombre: newOwner.nombre,
+                apellido: newOwner.apellido,
+                email: newOwner.email,
+                telefono: newOwner.telefono,
+                password: newOwner.password,
             });
-            if(isOwnerRegistered){
-                throw new Error('El email ya esta registrado');
-            }
-            else{
-                let newOwner = new Owner(owner);
-                newOwner.password = await bcrypt.hashSync(owner.password, parseInt(process.env.SALT_ROUNDS) | 10);
-                const owner = await Owner.create(newOwner);
-                return owner;
-            }
+            return ownerAdded;
         } catch (err) {
             console.log(err);
         }

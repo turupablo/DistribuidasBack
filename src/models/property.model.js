@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('mysql::memory:');
+const {sequelize} = require('../db/config');
 
 const Property = sequelize.define('Property', {
     id: {
