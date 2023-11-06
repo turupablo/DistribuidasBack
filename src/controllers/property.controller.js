@@ -30,6 +30,16 @@ class PropertyController {
             console.log(err);
         }
     }
+
+    async getPropertiesByOwner(req, res) {
+        try {
+            const ownerId = req.params.ownerId;
+            const properties = await PropertyService.getPropertiesByOwner(ownerId);
+            return res.status(200).json(properties);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 }
 
 module.exports = new PropertyController();

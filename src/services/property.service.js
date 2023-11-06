@@ -20,6 +20,19 @@ class PropertyService{
         }
     }
 
+    async getPropertiesByOwner(ownerId){
+        try {
+            const properties = await Property.findAll({
+                where: {
+                    ownerId: ownerId
+                }
+            });
+            return properties;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     async createProperty(property){
         try {
             const newProperty = await Property.create(property);
