@@ -7,8 +7,7 @@ const sequelize = new Sequelize(
     process.env.SQL_PASS, {
     host: process.env.SQL_HOST,
     port: process.env.SQL_PORT,
-
-    dialect: 'mysql'
+    dialect: 'mysql',
 });
 
 const sqlDBconnection = async() => {

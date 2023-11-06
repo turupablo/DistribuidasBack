@@ -4,7 +4,7 @@ const Property = require('../models/property.model');
 class PropertyService{
     async getProperties(){
         try {
-            const properties = await Property.findAll();
+            const properties = await Property.findAll({ raw: true });
             return properties;
         } catch (err) {
             console.log(err);

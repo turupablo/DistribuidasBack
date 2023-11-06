@@ -63,10 +63,12 @@ class OwnerController{
     async loginOwner(req, res){
         try {
             const { email, password } = req.body;
-            let owner = await OwnerService.getOwnerByEmail(email);
-            if (owner) {
-                const owner = await OwnerService.getOwnerByEmail(email);
-                const token = jwt.sign(owner.toJSON(), process.env.SECRET_KEY, { expiresIn: process.env.EXPIRES_IN });
+            let isOwnerRegistered = await AuthService.ownerHasValidCredentials(email, password);
+            if (isOwnerRegistered) {
+                const user = await OwnerService.getOwnerByEmail(email);
+                const token = jwt.sign(user.toJSON(), process.env.SECRET_KEY, {
+                    expiresIn: process.env.EXPIRES_IN,
+                });
                 return res.status(200).json({ token });
             } else {
                 return res.status(401).json({

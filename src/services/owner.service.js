@@ -5,7 +5,9 @@ const bcrypt = require('bcrypt');
 class OwnerService{
     async getOwners(){
         try {
-            const owners = await Owner.findAll();
+            console.log('getOwners');
+            const owners = await Owner.findAll({ raw: true });
+            console.log(owners);
             return owners;
         } catch (err) {
             console.log(err);
