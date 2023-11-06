@@ -26,16 +26,6 @@ app.use(cors());
 
 // DB Connection
 sqlDBconnection();
-// async () => {
-//     try {
-//         await sqlDBconnection();
-//         app.listen(process.env.PORT, () => {
-//             console.log(`Server running on port ${process.env.PORT}`);
-//         });
-//     } catch (err) {
-//         console.log('Failed to connect to the database:', err);
-//     }
-// }
 
 // Routes
 
